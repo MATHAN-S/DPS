@@ -195,3 +195,46 @@ if recovered_plaintext == plaintext:
 else:
     print("Failure..")
 
+
+
+
+# ps4 q1
+
+from cryptography.fernet import Fernet
+
+
+def generate_key():
+    return Fernet.generate_key()
+
+
+def encrypt(plaintext, key):
+    fernet = Fernet(key)
+    ciphertext = fernet.encrypt(plaintext)
+    return ciphertext
+
+
+def decrypt(ciphertext, key):
+    fernet = Fernet(key)
+    plaintext = fernet.decrypt(ciphertext)
+    return plaintext
+
+
+def main():
+
+    key = generate_key()
+    print(f"Key: {key.decode()}")
+
+
+    plaintext = b"Hello, World!"
+    print(f"Plaintext: {plaintext.decode()}")
+
+    ciphertext = encrypt(plaintext, key)
+    print(f"Ciphertext: {ciphertext.decode()}")
+
+    decrypted_plaintext = decrypt(ciphertext, key)
+    print(f"Decrypted Plaintext: {decrypted_plaintext.decode()}")
+
+if __name__ == "__main__":
+    main()
+
+
